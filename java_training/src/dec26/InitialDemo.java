@@ -1,4 +1,5 @@
 package dec26;
+
 /*
  * a program that accepts full name as an input from user and display only its 
  * initial from that full name
@@ -6,37 +7,42 @@ package dec26;
 
 import java.util.Scanner;
 
-public class InitialDemo{
+/**
+ * Mr
+ * 
+ * @author utsabn34
+ * 
+ */
+public class InitialDemo {
 
-	private static Scanner sc;			/*initialization of Scanner object for taking input */
+	/* initialization of Scanner object for taking input */
+	private static Scanner sc;
 
 	public static void main(String[] args) {
 
-		/* variable to store initial name initialization*/
-		StringBuilder initial=new StringBuilder();
-		sc=new Scanner(System.in);
-		
-		/*input taken from user and stored in variable */
+		/* variable to store initial name */
+		StringBuilder initial = new StringBuilder();
+		sc = new Scanner(System.in);
+
+		/* input taken from user and stored in variable */
 		System.out.println("Enter your full name: ");
-		String fullName=sc.nextLine();
-		int len=fullName.length();
-		
-		for (int i=0; i<len; i++){
+		String fullName = sc.nextLine();
+		int len = fullName.length();
 
-				/* getting character before first dot or space in name*/
-				if( (fullName.charAt(i)=='.') || (fullName.charAt(i)==' ') ){
-					break;
-				}else{
+		for (int i = 0; i < len; i++) {
 
-					/*each character before '.' or ' ' is stored as initial*/
-					initial.append(fullName.charAt(i));
-				}
+			/* getting character before first dot or space in name */
+			if ((fullName.charAt(i) == '.') || (fullName.charAt(i) == ' ')) {
+				break;
+			} else {
+
+				/* each character before '.' or ' ' is stored as initial */
+				initial.append(fullName.charAt(i));
+			}
 		}
-		
-		System.out.println("Your initial is: "+initial);
-				
-	/* main function end here*/	
-	}
-/* InitialDemo class ends here*/ 
-}
 
+		System.out.println("Your initial is: " + initial);
+
+	}
+
+}
