@@ -1,15 +1,11 @@
 package dec26;
 
-/*
- * a program that contains greeting object Of String class and welcome object 
- * of StringBuilder class 
- * Now after concatinating few string on both the object it should display the updated 
- * value of both the object 
- */
-
 import java.util.Scanner;
 
 /**
+ * a program that contains greeting object Of String class and welcome object of
+ * StringBuilder class Now after concatinating few string on both the object it
+ * should display the updated value of both the object
  * 
  * @author utsabn34
  * 
@@ -17,7 +13,7 @@ import java.util.Scanner;
 public class MutableImmutableDemo {
 
 	/* initialization of Scanner object for taking input */
-	private static Scanner sc;
+	private static Scanner input;
 
 	public static void main(String[] args) {
 
@@ -30,12 +26,12 @@ public class MutableImmutableDemo {
 		System.out.println("initial value of greeting: " + greeting);
 		System.out.println("initial value of welcome: " + welcome);
 
-		sc = new Scanner(System.in);
+		input = new Scanner(System.in);
 		System.out.println("enter new string to add in greeting suffix: ");
-		String inputGreeting = sc.nextLine();
+		String inputGreeting = input.nextLine();
 
 		System.out.println("enter new string to add in welcome suffix: ");
-		String inputWelcome = sc.nextLine();
+		String inputWelcome = input.nextLine();
 
 		/* process of adding string on a suffix */
 		greeting.concat(inputGreeting);

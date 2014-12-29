@@ -1,41 +1,40 @@
 package dec26;
 
-/*
- * a program that accepts name of cities separated by white space along with character sequence to search city as an input
- * from user and display the city that falls under that character sequence 
- * 
- */
-
 import java.util.Scanner;
 
 /**
+ * a program that accepts name of cities separated by white space along with
+ * character sequence to search city as an input from user and display the city
+ * that falls under that character sequence
  * 
  * @author utsabn34
  * 
  */
 public class PatternDemo {
 	/* initialization of Scanner object for taking input */
-	private static Scanner sc;
+	private static Scanner input;
 
 	public static void main(String[] args) {
 
 		/* variable initialization for cities,pattern, start point, end point */
-		String cities;
-		String pattern;
-		int srt = 0, end = 0;
-		sc = new Scanner(System.in);
+		String cities = "";
+		String pattern = "";
+		int srt = 0;
+		int end = 0;
+		input = new Scanner(System.in);
 
 		/* takes input from user and store city in cities */
 		System.out.println("enter cities name separated with white space ");
-		// kathmandu lalitpur bhaktpur pokhara
-		cities = sc.nextLine();
+
+		cities = input.nextLine();
 		/* takes input character sequence in pattern variable */
 		System.out.println("enter pattern: ");
-		pattern = sc.next();
+		pattern = input.next();
 		cities = cities.concat(" ");
-
+		int citiesLength = cities.length();
+		int i;
 		/* pattern finding using loop detecting whitespace */
-		for (int i = 0; i < cities.length(); i++) {
+		for (i = 0; i < citiesLength; i++) {
 
 			/* if case for separating each city and matching pattern */
 			if (cities.charAt(i) == ' ') {
