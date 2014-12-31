@@ -18,7 +18,7 @@ public class Calculator {
 		input = new Scanner(System.in);
 		float val1 = 0;
 		float val2 = 0;
-		float result = 0;
+		String result = "";
 		String valString = "";
 		String symbol = "";
 		Boolean status = true;
@@ -48,7 +48,7 @@ public class Calculator {
 
 			/* check whether entered value is float or not */
 			do {
-				System.out.print("Enter seond value: ");
+				System.out.print("Enter second value: ");
 				valString = input.next();
 				check = isFloat(valString);
 
@@ -59,19 +59,19 @@ public class Calculator {
 			/* calculation operation */
 			switch (symbol) {
 			case "+":
-				result = val1 + val2;
+				result = sumOfValues(val1, val2);
 				break;
 			case "-":
-				result = val1 - val2;
+				result = substractOfValues(val1, val2);
 				break;
 			case "*":
-				result = val1 * val2;
+				result = productOfValues(val1, val2);
 				break;
 			case "/":
-				result = val1 / val2;
+				result = divisionOfValues(val1, val2);
 				break;
 			case "%":
-				result = val1 % val2;
+				result = modOfValues(val1, val2);
 				break;
 			default:
 				System.out.println("enter valid symbol");
@@ -120,13 +120,92 @@ public class Calculator {
 	 *         specified otherwise returns <code>false</code>.
 	 */
 	public static boolean isOperator(String str) {
-		if ((str.equals("+")) || (str.equals("-")) || (str.equals("*"))
-				|| (str.equals("/")) || (str.equals("%"))) {
-			return true;
-		} else {
-			System.out.println("not a specified symbol");
-			return false;
+		String[] listOfOperators = { "+", "-", "*", "/", "%" };
+		Boolean status = false;
+		int lengthOfOperator = listOfOperators.length;
+		for (int i = 0; i < lengthOfOperator; i++) {
+
+			if (str.equals(listOfOperators[i])) {
+				status = true;
+				break;
+			} else {
+
+				status = false;
+			}
 		}
+		return status;
 	}
 
+	/**
+	 * return sum of two values
+	 * 
+	 * @param val1
+	 * @param val2
+	 * @return result
+	 */
+	public static String sumOfValues(float val1, float val2) {
+
+		/* sum of two values */
+		return Float.toString(val1 + val2);
+	}
+
+	/**
+	 * return difference of two values
+	 * 
+	 * @param val1
+	 * @param val2
+	 * @return
+	 */
+	public static String substractOfValues(float val1, float val2) {
+
+		/* difference of two values */
+
+		return Float.toString(val1 - val2);
+
+	}
+
+	/**
+	 * return product of two values
+	 * 
+	 * @param val1
+	 * @param val2
+	 * @return
+	 */
+	public static String productOfValues(float val1, float val2) {
+		/* product of two values */
+		return Float.toString(val1 * val2);
+
+	}
+
+	/**
+	 * return of division of two values
+	 * 
+	 * @param val1
+	 * @param val2
+	 * @return
+	 */
+	public static String divisionOfValues(float val1, float val2) {
+
+		/* division of two values */
+		if (val2 == 0) {
+			return ("val2 cannot be zero");
+		} else {
+			return Float.toString(val1 / val2);
+		}
+
+	}
+
+	/**
+	 * return modulus of two values
+	 * 
+	 * @param val1
+	 * @param val2
+	 * @return
+	 */
+	public static String modOfValues(float val1, float val2) {
+
+		/* modulus of two values */
+
+		return Float.toString(val1 % val2);
+	}
 }

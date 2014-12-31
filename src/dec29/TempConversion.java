@@ -7,21 +7,21 @@ package dec29;
  * @author utsabn34
  */
 public class TempConversion {
-
 	public static void main(String[] args) {
 		/* initialization of celcius and fahrenheit value */
 		int celcius = 0;
 		float fahrenheit = 0;
-		int i;
-
 		System.out.println("celcius" + "\t" + "fahrenheit");
-		for (i = 0; i < 100; i++) {
+
+		for (int i = 0; i < 100; i++) {
 
 			/* conversion from celcius to fahrenheit */
 			fahrenheit = (float) celcius * 9 / 5 + 32;
-			System.out.println(celcius + "\t" + fahrenheit);
+			System.out.println(celcius + "\u00b0" + "C" + "\t" + fahrenheit
+					+ "\u00b0" + "F");
 			celcius++;
 		}
+
 	}
 
 }

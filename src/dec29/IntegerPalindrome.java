@@ -9,7 +9,6 @@ import java.util.Scanner;
  * @author utsabn34
  */
 public class IntegerPalindrome {
-
 	private static Scanner input;
 
 	public static void main(String[] args) {
@@ -20,7 +19,6 @@ public class IntegerPalindrome {
 		int count = 0;
 		boolean status = true;
 		boolean check = true;
-
 		/* loop until the number entered is 5 digit */
 		while (status) {
 			/* getting input from user */
@@ -32,7 +30,8 @@ public class IntegerPalindrome {
 				check = isInt(numberString);
 
 			} while (!check);
-
+			numberString = Integer.toString((Math.abs(Integer
+					.parseInt(numberString))));
 			len = numberString.length();
 			if (len == 5) {
 
@@ -69,7 +68,8 @@ public class IntegerPalindrome {
 	public static boolean isInt(String str) {
 		try {
 			Integer.parseInt(str);
-		} catch (NumberFormatException nfe) {
+		} catch (NumberFormatException ntInt) {
+			System.out.println("Not a integer value");
 			return false;
 		}
 		return true;
