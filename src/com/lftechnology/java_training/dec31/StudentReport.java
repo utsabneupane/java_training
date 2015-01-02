@@ -1,12 +1,13 @@
 package com.lftechnology.java_training.dec31;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  * a program that has student profile and calculates percentage and GPA of 5
  * students.
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 public class StudentReport {
@@ -53,7 +54,7 @@ public class StudentReport {
  * Student class has following attributes: name, class, rollnum, and marks
  * obtained in 5 subjects.
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 class Student {
@@ -68,9 +69,13 @@ class Student {
 	 * sets value to instance variable of class
 	 * 
 	 * @param name
+	 *            of student
 	 * @param className
+	 *            of student
 	 * @param rollNum
+	 *            of student
 	 * @param marks
+	 *            obtained by student
 	 */
 	protected void setData(String name, String className, String rollNum,
 			float[] marks) {
@@ -84,7 +89,7 @@ class Student {
 	 * assign value to instance variable for class
 	 */
 	protected void getData() {
-		Boolean status = true;
+		Boolean inputFormat = true;
 		System.out.print("Enter your Name: ");
 		this.name = input.nextLine();
 		System.out.print("enter your class: ");
@@ -96,15 +101,25 @@ class Student {
 			do {
 				try {
 					System.out.print("enter marks of subject" + (i + 1) + ": ");
+
 					this.marks[i] = input.nextFloat();
-					status = true;
-				} catch (Exception e) {
+					if (this.marks[i] > 100 || this.marks[i] < 0) {
+						throw new Exception(
+								"number should be in range of 0 and 100 enter number within range");
+					}
+					inputFormat = true;
+				} catch (InputMismatchException e) {
+
 					System.out.println("Enter number value");
-					status = false;
+					inputFormat = false;
 					input.next();
+				} catch (Exception e) {
+					System.out.println(e);
+					inputFormat = false;
+
 				}
 
-			} while (!status);
+			} while (!inputFormat);
 
 		}
 		System.out.println("");

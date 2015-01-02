@@ -6,14 +6,15 @@ import java.util.Scanner;
  * Write a test application named DateTest that demonstrates class Date's
  * capabilities.
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
+
 public class DateTest {
 
 	public static void main(String[] args) {
-		Date date1 = new Date();
-		Date date2 = new Date();
+		DateUtility date1 = new DateUtility();
+		DateUtility date2 = new DateUtility();
 		date1.assignValue();
 		date2.setDay(12);
 		date2.setMonth(01);
@@ -33,10 +34,10 @@ public class DateTest {
  * method for each instance variable. Provide a method displayDate that displays
  * the month, day and year separated by forward slashes (/).
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
-class Date {
+class DateUtility {
 	private int month = 0;
 	private int day = 0;
 	private int year = 0;
@@ -95,46 +96,71 @@ class Date {
 	}
 
 	protected void assignValue() {
-		Boolean status = true;
+		Boolean inputFormat = true;
 		/* for correct input from user */
 		do {
 			try {
-				System.out.println("Enter day : ");
-				this.day = input.nextInt();
-				status = true;
+				do {
+					System.out.println("Enter day : ");
+					this.day = input.nextInt();
+					if (this.day < 0) {
+						System.out.println("day cant be neagtive");
+					}
+					if (this.day > 31) {
+						System.out.println("day should be less than 31 ");
+					}
+				} while (this.day < 0 || this.day > 31);
+				inputFormat = true;
 			} catch (Exception e) {
 				System.out.println("Enter integer value");
-				status = false;
+				inputFormat = false;
 				input.next();
 			}
 
-		} while (!status);
+		} while (!inputFormat);
 		/* for correct input from user */
 		do {
 			try {
-				System.out.println("Enter month : ");
-				this.month = input.nextInt();
-				status = true;
+				do {
+					System.out.println("Enter month : ");
+					this.month = input.nextInt();
+					if (this.month < 0) {
+						System.out.println("cant be negative month");
+					}
+					if (this.month > 12) {
+						System.out.println("month cant be greater than 12");
+					}
+				} while (this.month < 0 || this.month > 12);
+				inputFormat = true;
 			} catch (Exception e) {
 				System.out.println("Enter integer value");
-				status = false;
+				inputFormat = false;
 				input.next();
 			}
 
-		} while (!status);
+		} while (!inputFormat);
 		/* for correct input from user */
 		do {
 			try {
-				System.out.println("Enter year : ");
-				this.year = input.nextInt();
-				status = true;
+				do {
+					System.out.println("Enter year : ");
+					this.year = input.nextInt();
+					if (this.year < 0) {
+						System.out.println("cant be negative year");
+					}
+					if (Integer.toString(this.year).length() > 4) {
+						System.out.println("year should be from 0000-9999");
+					}
+				} while (this.year < 0
+						|| Integer.toString(this.year).length() > 4);
+				inputFormat = true;
 			} catch (Exception e) {
 				System.out.println("Enter integer value");
-				status = false;
+				inputFormat = false;
 				input.next();
 			}
 
-		} while (!status);
+		} while (!inputFormat);
 
 	}
 

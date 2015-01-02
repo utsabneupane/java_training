@@ -8,7 +8,7 @@ package com.lftechnology.java_training.dec31;
  * annualInterestRate to 5%, calculate the next month's interest and print the
  * new balances for both savers.
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 public class SavingAccountManipulate {
@@ -43,7 +43,7 @@ public class SavingAccountManipulate {
  * savingsBalance. Provide a static method modifyInterestRate that sets the
  * annualInterestRate to a new value.
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 class SavingAccount {

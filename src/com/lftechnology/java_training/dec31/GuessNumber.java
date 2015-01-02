@@ -8,7 +8,7 @@ import java.util.Scanner;
  * 100. Check if the guess value matched with random no. or not, if matched show
  * the guessing value, random value and the no. of attempts.
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 public class GuessNumber {
@@ -23,8 +23,10 @@ public class GuessNumber {
 			do {
 				/* only generates new random number if user guessed it right */
 				if (randomNum == guessNum) {
-					randomNum = randomNumGen();
+					randomNum = randomNumGen(1, 100);
+
 				}
+				System.out.println(randomNum);
 				System.out.println("Enter your Guessing number from 1-100");
 				guessNum = isInt(input.next());
 
@@ -42,6 +44,7 @@ public class GuessNumber {
 			} while (!(guessNum == randomNum));
 
 			System.out.println("no of attempt: " + countAttempt);
+			countAttempt = 0;
 			System.out.println("Do you want to play again[y/n]:");
 			continuePlay = input.next();
 
@@ -53,13 +56,11 @@ public class GuessNumber {
 	 * 
 	 * @return randomNum
 	 */
-	private static int randomNumGen() {
+	private static int randomNumGen(int downLimit, int upLimit) {
 		int randomNum = 0;
-		/* generated random number */
-		randomNum = (int) (Math.random() * 100);
-		if (randomNum == 1 || randomNum == 100) {
-			randomNumGen();
-		}
+		do {
+			randomNum = (int) (Math.random() * upLimit);
+		} while (randomNum == downLimit || randomNum == downLimit);
 		return randomNum;
 	}
 
@@ -68,14 +69,15 @@ public class GuessNumber {
 	 * values falls between 1 and 100 or not
 	 * 
 	 * @param inputVal
+	 *            that carries input value entered by user
 	 * @return if inputVal can be parsed to {@link Integer}
 	 */
 	private static int isInt(String inputVal) {
-		int temp = 0;
+		int tempVal = 0;
 		try {
-			temp = Integer.parseInt(inputVal);
+			tempVal = Integer.parseInt(inputVal);
 			/* checks if inputted value falls between 1 and 100 or not */
-			if (temp >= 100 || temp <= 1) {
+			if (tempVal >= 100 || tempVal <= 1) {
 				throw new Exception("range should be in between 1 and 100");
 			}
 

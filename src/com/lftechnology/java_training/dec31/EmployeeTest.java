@@ -8,7 +8,7 @@ import java.util.Scanner;
  * object's full name and yearly salary. Then give each Employee a 10% raise and
  * display each Employee's full name and yearly salary again.
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 public class EmployeeTest {
@@ -38,25 +38,27 @@ public class EmployeeTest {
  * initializes the three instance variables. Provide a set and a get method for
  * each instance variable.
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 class Employee {
-	private String fName = "";
-	private String lname = "";
+	private String firstName = "";
+	private String lastName = "";
 	private double salary = 0;
 	private Scanner input = new Scanner(System.in);
 
 	/**
 	 * set value to instance variable
 	 * 
-	 * @param fName
-	 * @param lName
+	 * @param firstName
+	 *            first name of employee
+	 * @param lastName
+	 *            last name of employee
 	 * @param salary
 	 */
 	protected void setData(String fName, String lName, double salary) {
-		this.fName = fName;
-		this.lname = lName;
+		this.firstName = fName;
+		this.lastName = lName;
 		this.salary = salary;
 	}
 
@@ -66,7 +68,7 @@ class Employee {
 	 * @return first Name Of employee
 	 */
 	protected String getFirstName() {
-		return this.fName;
+		return this.firstName;
 	}
 
 	/**
@@ -75,7 +77,7 @@ class Employee {
 	 * @return last Name of employee
 	 */
 	protected String getLastName() {
-		return this.lname;
+		return this.lastName;
 	}
 
 	/**
@@ -91,25 +93,30 @@ class Employee {
 	 * takes input from user about information of employee
 	 */
 	protected void assignData(String nameEmployee) {
-		Boolean status = true;
+		Boolean inputFormat = true;
 		System.out.println("hello " + nameEmployee);
 		System.out.println("Enter your First Name:");
-		this.fName = input.next();
+		this.firstName = input.next();
 		System.out.println("enter your last Name: ");
-		this.lname = input.next();
+		this.lastName = input.next();
 		/* for correct input from user */
 		do {
 			try {
-				System.out.println("enter your salary: ");
-				this.salary = input.nextDouble();
-				status = true;
+				do {
+					System.out.println("enter your salary: ");
+					this.salary = input.nextDouble();
+					if (this.salary < 0) {
+						System.out.println("cant be negative salary");
+					}
+				} while (this.salary < 0);
+				inputFormat = true;
 			} catch (Exception e) {
 				System.out.println("Enter number value");
-				status = false;
+				inputFormat = false;
 				input.next();
 			}
 
-		} while (!status);
+		} while (!inputFormat);
 
 	}
 
@@ -117,7 +124,7 @@ class Employee {
 	 * display information about employee
 	 */
 	protected void displayData() {
-		System.out.println("Hello. " + this.fName + " " + this.lname);
+		System.out.println("Hello. " + this.firstName + " " + this.lastName);
 		System.out.println("Your Present Salary is= " + this.salary);
 	}
 }

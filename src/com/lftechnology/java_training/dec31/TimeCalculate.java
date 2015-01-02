@@ -1,5 +1,6 @@
 package com.lftechnology.java_training.dec31;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -8,20 +9,21 @@ import java.util.Scanner;
  * display method to display the time in hh:mm:ss format. Modify the class to
  * add two time objects that correctly results in addition of times.
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 public class TimeCalculate {
 
 	public static void main(String[] args) {
-		Time time1 = new Time();
-		Time time2 = new Time();
-		time1.assignValue();
-		time1.displayTime("time1");
-		time2.setData(6, 22, 55);
-		time2.displayTime("default entered time2");
-		time1.addTime(time2);
-		time1.displayTime("adding time1 and time2 final time");
+		TimeUtility presentTime = new TimeUtility();
+		TimeUtility newTime = new TimeUtility();
+		presentTime.assignValue();
+		presentTime.displayTime("present time");
+
+		newTime.displayTime("default entered new time");
+		presentTime.addTime(newTime);
+		presentTime
+				.displayTime("adding present time and new time to final time");
 	}
 
 }
@@ -30,10 +32,10 @@ public class TimeCalculate {
  * a Time class that set values to instance variables ask user to input values
  * add two time values and display them
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
-class Time {
+class TimeUtility {
 	private int hour = 0;
 	private int minutes = 0;
 	private int seconds = 0;
@@ -57,46 +59,76 @@ class Time {
 	 * ask user to enter values and assign them to instance variables
 	 */
 	protected void assignValue() {
-		Boolean status = true;
+		Boolean inputFormat = true;
 		/* for correct input from user */
 		do {
 			try {
 				System.out.println("Enter hour");
 				this.hour = input.nextInt();
-				status = true;
-			} catch (Exception e) {
+				if (this.hour < 0) {
+					throw new Exception("hour cannot be less than 0");
+				}
+				if (this.hour > 24) {
+					throw new Exception("hour cannot be greater than 24");
+				}
+				inputFormat = true;
+			} catch (InputMismatchException e) {
 				System.out.println("Enter integer value");
-				status = false;
+				inputFormat = false;
 				input.next();
+			} catch (Exception e) {
+				System.out.println(e);
+				inputFormat = false;
+
 			}
 
-		} while (!status);
+		} while (!inputFormat);
 		/* for correct input from user */
 		do {
 			try {
 				System.out.println("Enter minutes");
 				this.minutes = input.nextInt();
-				status = true;
-			} catch (Exception e) {
+				if (this.minutes < 0) {
+					throw new Exception("minutes cannot be less than 0");
+				}
+				if (this.minutes > 60) {
+					throw new Exception("minutes cannot be greater than 60");
+				}
+				inputFormat = true;
+			} catch (InputMismatchException e) {
 				System.out.println("Enter integer value");
-				status = false;
+				inputFormat = false;
 				input.next();
+			} catch (Exception e) {
+				System.out.println(e);
+				inputFormat = false;
+
 			}
 
-		} while (!status);
+		} while (!inputFormat);
 		/* for correct input from user */
 		do {
 			try {
 				System.out.println("Enter seconds");
 				this.seconds = input.nextInt();
-				status = true;
-			} catch (Exception e) {
+				if (this.seconds < 0) {
+					throw new Exception("second cannot be less than 0");
+				}
+				if (this.seconds > 60) {
+					throw new Exception("seconds cannot be greater than 60");
+				}
+				inputFormat = true;
+			} catch (InputMismatchException e) {
 				System.out.println("Enter integer value");
-				status = false;
+				inputFormat = false;
 				input.next();
+			} catch (Exception e) {
+				System.out.println(e);
+				inputFormat = false;
+
 			}
 
-		} while (!status);
+		} while (!inputFormat);
 
 	}
 
@@ -117,7 +149,7 @@ class Time {
 	 * 
 	 * @param time
 	 */
-	protected void addTime(Time time) {
+	protected void addTime(TimeUtility time) {
 		this.seconds += time.seconds;
 		this.minutes += time.minutes + this.seconds / 60;
 		this.seconds %= 60;

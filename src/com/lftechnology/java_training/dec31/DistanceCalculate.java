@@ -9,7 +9,7 @@ import java.util.Scanner;
  * feet and inches, a member function addDistance for adding two distances, and
  * a member function compareDistance for comparing two distances.
  * 
- * 
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 class Distance {
@@ -29,35 +29,38 @@ class Distance {
 	 * get values i.e feet and inches from user
 	 */
 	protected void assignValue() {
-		Boolean status = false;
+		Boolean inputFormat = false;
 		/* takes only integer value for feet */
 		do {
 			try {
-				System.out.println("enter feet value:");
-				this.feet = input.nextInt();
-				status = true;
+				do {
+					System.out
+							.println("enter feet value(only positive value):");
+					this.feet = input.nextInt();
+					inputFormat = true;
+				} while (this.feet < 0);
 			} catch (Exception e) {
-				status = false;
+				inputFormat = false;
 				System.out.println("not a int value");
 				input.next();
 			}
-		} while (!status);
+		} while (!inputFormat);
 		/* takes only float value for inches and should be less than 12 */
 		do {
 			try {
 				do {
 					System.out
-							.println("enter inch value(should be less than 12):");
+							.println("enter inch value(should be less than 12 and shouldnot be negative):");
 					this.inches = input.nextFloat();
-					status = true;
-				} while (this.inches >= 12);
+					inputFormat = true;
+				} while (this.inches >= 12 || this.inches < 0);
 			} catch (Exception e) {
-				status = false;
+				inputFormat = false;
 				System.out.println("not a float value");
 				input.next();
 			}
 
-		} while (!status);
+		} while (!inputFormat);
 	}
 
 	/**
@@ -69,7 +72,7 @@ class Distance {
 	}
 
 	/**
-	 * add two distances inputted by user
+	 * add two distances through an object of {@link Distance} inputted by user
 	 */
 	protected void addDistance(Distance distance1, Distance distance2) {
 		this.inches += distance1.inches + distance2.inches;
@@ -81,7 +84,9 @@ class Distance {
 	}
 
 	/**
-	 * compare distances entered by user
+	 * 
+	 * @param distance
+	 *            an object of {@link Distance}
 	 */
 	protected void compareDistance(Distance distance) {
 		float distance2 = distance.feet * 12 + distance.inches;
@@ -101,7 +106,7 @@ class Distance {
  * a program that takes two distance from user in the form of feet and inches
  * and add them and compare them
  * 
- * @author utsabn34
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 public class DistanceCalculate {
