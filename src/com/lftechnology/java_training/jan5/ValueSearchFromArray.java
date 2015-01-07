@@ -10,9 +10,9 @@ import java.util.logging.Logger;
  * 
  */
 public class ValueSearchFromArray {
-	private static final Logger LOGGER = Logger
-			.getLogger(ValueSearchFromArray.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ValueSearchFromArray.class.getName());
 	private static Scanner input = new Scanner(System.in);
+	private static final int EXIT_KEY = 3;
 
 	public static void main(String[] args) {
 		// creates new object to search value from array
@@ -20,8 +20,7 @@ public class ValueSearchFromArray {
 		int choice = 0;
 		try {
 			do {
-				LOGGER.info("Enter your choice:\n 1. store value in array"
-						+ "\n 2. enter value to search from array ");
+				LOGGER.info("Enter your choice:\n 1. store value in array" + "\n 2. enter value to search from array ");
 				choice = input.nextInt();
 
 				switch (choice) {
@@ -35,7 +34,7 @@ public class ValueSearchFromArray {
 				default:
 					break;
 				}
-			} while (!(choice == 3));
+			} while (!(choice == EXIT_KEY));
 		} finally {
 			input.close();
 		}
@@ -44,9 +43,8 @@ public class ValueSearchFromArray {
 }
 
 /**
- * This class ask user to enter value to store in array when they finished
- * adding then asked user to enter value to be searched in array and display
- * whether the value is in array or not
+ * This class ask user to enter value to store in array when they finished adding then asked user to enter value to be searched in array and
+ * display whether the value is in array or not
  * 
  * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
@@ -56,7 +54,9 @@ class SearchValue {
 	private String[] arrayOfValues = new String[10];
 	private int countValuesInArray = 0;
 	private Scanner input = new Scanner(System.in);
-	private final Logger LOGGER = Logger.getLogger(getClass().getName());
+	private final static Logger LOGGER = Logger.getLogger(SearchValue.class.getName());
+	private final String Y = "y";
+	private final String YES = "yes";
 
 	/**
 	 * get value from user to store in array
@@ -64,26 +64,24 @@ class SearchValue {
 	 */
 	public void getArray() {
 		String exitStatus = "";
-		try {
-			// loop until user added new values to array
-			do {
-				// checks if the limit of array exceeds
-				try {
-					LOGGER.info("enter Value to to store in array");
-					this.arrayOfValues[this.countValuesInArray++] = this.input
-							.next();
 
-				} catch (Exception e) {
-					LOGGER.info("cant add more data");
-					break;
-				}
+		// loop until user added new values to array
+		do {
+			// checks if the limit of array exceeds
+			try {
+				LOGGER.info("enter Value to to store in array");
+				this.arrayOfValues[this.countValuesInArray++] = this.input.next();
 
-				LOGGER.info("Do you want to add more[y/n]: ");
-				exitStatus = this.input.next();
-			} while (((exitStatus.equals("y")) || (exitStatus.equals("yes"))));
-		} finally {
-			input.close();
-		}
+			} catch (Exception e) {
+				this.countValuesInArray--;
+				LOGGER.info("cant add more data");
+				break;
+			}
+
+			LOGGER.info("Do you want to add more[y/n]: ");
+			exitStatus = this.input.next();
+		} while (((exitStatus.equals(Y)) || (exitStatus.equals(YES))));
+
 	}
 
 	/**
@@ -93,23 +91,19 @@ class SearchValue {
 	public void searchValueInArray() {
 		String resultOfSearch = "";
 		// get input to be searched in array from user
-		try {
-			LOGGER.info("Enter value to search from array");
-			this.valueToSearch = this.input.next();
 
-			for (int i = 0; i < this.countValuesInArray; i++) {
-				if (this.arrayOfValues[i].equals(this.valueToSearch)) {
-					resultOfSearch = "Congratss!!! searched value is in array !!";
-					break;
+		LOGGER.info("Enter value to search from array");
+		this.valueToSearch = this.input.next();
 
-				} else {
-					resultOfSearch = "Sorry,not found in array!!!";
-				}
+		for (int i = 0; i < this.countValuesInArray; i++) {
+			if (this.arrayOfValues[i].equals(this.valueToSearch)) {
+				resultOfSearch = "Congratss!!! searched value is in array !!";
+				break;
+
+			} else {
+				resultOfSearch = "Sorry,not found in array!!!";
 			}
-			LOGGER.info(resultOfSearch);
-		} finally {
-			input.close();
 		}
-
+		LOGGER.info(resultOfSearch);
 	}
 }

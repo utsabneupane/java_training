@@ -25,71 +25,63 @@ public class SerialContentInArrayComparator {
 }
 
 /**
- * this class stores value in array and compares two array if they both have
- * serial content or not
+ * this class stores value in array and compares two array if they both have serial content or not
  * 
  * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
  */
 class StoreArray {
 	private String[] arrayOfValues = new String[10];
-	private final Logger LOGGER = Logger.getLogger(StoreArray.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(StoreArray.class.getName());
 	private Scanner input = new Scanner(System.in);
 	private int countValuesInArray = 0;
+	private final String Y = "y";
+	private final String YES = "yes";
 
 	public String[] getValue() {
 		return this.arrayOfValues;
 	}
 
 	/**
-	 * stores value in array and prompt every time if user wants to add new data
-	 * until the range exceed
+	 * stores value in array and prompt every time if user wants to add new data until the range exceed
 	 * 
 	 * @param arrayNumber
-	 *            which is a string that indicate in which array user in
-	 *            inserting values
+	 *            which is a string that indicate in which array user in inserting values
 	 */
 	public void setValueForArray(String arrayNumber) {
 		LOGGER.info(arrayNumber);
 		String exitStatus = "";
-		try {
-			// loop until user added new values to array
-			do {
-				// checks if the limit of array exceeds
-				try {
-					LOGGER.info("enter Value to to store in array");
-					this.arrayOfValues[this.countValuesInArray++] = this.input
-							.next();
 
-				} catch (Exception e) {
-					LOGGER.info("cant add more data");
-					break;
-				}
+		// loop until user added new values to array
+		do {
+			// checks if the limit of array exceeds
+			try {
+				LOGGER.info("enter Value to to store in array");
+				this.arrayOfValues[this.countValuesInArray++] = this.input.next();
 
-				LOGGER.info("Do you want to add more[y/n]: ");
-				exitStatus = this.input.next();
-			} while (((exitStatus.equals("y")) || (exitStatus.equals("yes"))));
-		} finally {
-			input.close();
-		}
+			} catch (Exception e) {
+				this.countValuesInArray--;
+				LOGGER.info("cant add more data");
+				break;
+			}
 
+			LOGGER.info("Do you want to add more[y/n]: ");
+			exitStatus = this.input.next();
+		} while (((exitStatus.equals(Y)) || (exitStatus.equals(YES))));
 	}
 
 	/**
-	 * compares two arrays value whether each position value is equivalent to
-	 * respective array values or not
+	 * compares two arrays value whether each position value is equivalent to respective array values or not
 	 * 
 	 * @param arrayOfValues2
-	 *            an object of {@link StoreArray} too cpmare between two array
-	 *            values
+	 *            an object of {@link StoreArray} too cpmare between two array values
 	 */
 	public void compareArrayValues(StoreArray arrayOfValues2) {
 		Boolean serialContentStatus = true;
 		if (this.countValuesInArray == arrayOfValues2.countValuesInArray) {
 			label: for (int i = 0; i < this.countValuesInArray; i++) {
 				for (int j = 0; j < this.countValuesInArray; j++) {
-					if (!this.arrayOfValues[j].equalsIgnoreCase(arrayOfValues2
-							.getValue()[j])) {
+					if (!this.arrayOfValues[j].equalsIgnoreCase(arrayOfValues2.getValue()[j])) {
 						serialContentStatus = false;
 						break label;
 
