@@ -2,6 +2,7 @@ package com.lftechnology.java_training.jan7;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
 
 /**
  * Write a program to create a text file in the path firstprogramfile.txt and check whether that file is exists. Using the command exists(),
@@ -17,8 +18,8 @@ public class FileCreator {
 		String path = "firstprogramfile.txt";
 		File newFile = new File(path);
 		createFile(newFile);
-		constantValues.LOGGER.info("Following are the property of file:\n" + "1." + checkFileExistence(newFile) + "\n2. "
-				+ isFileADirectory(newFile) + "\n3." + isAFile(newFile) + "\n4. its absoulte path is: " + absolutePath(newFile));
+		constantValues.LOGGER.log(Level.INFO, "Following are the property of file:\n1.{0} \n2.{1} \n3.{2} \n4. its absoulte path is: {3} ",
+				new Object[] { checkFileExistence(newFile), isFileADirectory(newFile), isAFile(newFile), absolutePath(newFile) });
 
 	}
 
@@ -38,9 +39,9 @@ public class FileCreator {
 			}
 
 		} catch (IOException e) {
-			constantValues.LOGGER.info("error eccoured" + e);
+			constantValues.LOGGER.log(Level.INFO, "error eccoured {0}", e);
 		} catch (Exception e) {
-			constantValues.LOGGER.info("" + e);
+			constantValues.LOGGER.log(Level.INFO, "{0}", e);
 		}
 	}
 

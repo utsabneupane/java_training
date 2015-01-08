@@ -1,6 +1,7 @@
 package com.lftechnology.java_training.jan7;
 
 import java.io.File;
+import java.util.logging.Level;
 
 /**
  * Write a program to create a directory and check whether the directory is created.
@@ -34,9 +35,9 @@ public class CreateDirectory {
 			}
 
 		} catch (SecurityException e) {
-			constantValues.LOGGER.info("error eccoured while creating directory" + e);
+			constantValues.LOGGER.log(Level.INFO, "error eccoured while creating directory", e);
 		} catch (Exception e) {
-			constantValues.LOGGER.info("" + e);
+			constantValues.LOGGER.log(Level.INFO, "", e);
 		}
 	}
 

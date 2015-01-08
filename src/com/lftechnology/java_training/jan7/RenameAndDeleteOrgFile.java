@@ -3,6 +3,7 @@ package com.lftechnology.java_training.jan7;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 /**
  * Write a program to rename the given file, after renaming the file delete the renamed file. (Accept the file name using command line
@@ -39,7 +40,8 @@ public class RenameAndDeleteOrgFile {
 			}
 
 		} catch (IOException e) {
-			constantValues.LOGGER.info("error eccoured" + e);
+			constantValues.LOGGER.log(Level.INFO, "error occured {0}", e);
+
 		}
 	}
 
@@ -65,13 +67,13 @@ public class RenameAndDeleteOrgFile {
 		try {
 			newFile.createNewFile();
 		} catch (IOException e) {
-			constantValues.LOGGER.info("" + e);
+			constantValues.LOGGER.log(Level.INFO, "{0}", e);
 		}
 		boolean renamed = oldFile.renameTo(newFile);
 		if (renamed) {
-			constantValues.LOGGER.info(oldFile + " renamed to " + newFile);
+			constantValues.LOGGER.log(Level.INFO, "{0}  renamed to {1}", new Object[] { oldFile, newFile });
 		} else {
-			constantValues.LOGGER.info(oldFile.getName() + " renamed to " + newFile.getName());
+			constantValues.LOGGER.log(Level.INFO, "{0} cant be renamed to {1}", new Object[] { oldFile, newFile });
 		}
 		return newFile;
 	}
@@ -107,8 +109,8 @@ public class RenameAndDeleteOrgFile {
 	 *            an object of {@link File}
 	 */
 	public static void printFileDetails(File fileName) {
-		constantValues.LOGGER.info("Absolute Path: " + fileName.getAbsoluteFile());
-		constantValues.LOGGER.info("File exists:  " + fileName.exists());
+		constantValues.LOGGER.log(Level.INFO, "Absolute Path: {0}" + fileName.getAbsoluteFile());
+		constantValues.LOGGER.log(Level.INFO, "File exists: {0}" + fileName.exists());
 	}
 
 }

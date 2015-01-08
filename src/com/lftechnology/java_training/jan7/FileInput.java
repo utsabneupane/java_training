@@ -3,6 +3,7 @@ package com.lftechnology.java_training.jan7;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 /**
  * Write a program called FileInput to read an int, a double, and a String form a text file called "in.txt", and produce the following
@@ -63,9 +64,11 @@ public class FileInput {
 	 * display value stored in different variable which are according to data types
 	 */
 	private static void displayValueFromFile() {
-		constantValues.LOGGER.info("\na.The integer read is " + displayIntegerValue() + "\nb.The doubling point number read is "
-				+ displayDoubleValue() + "\nc.the string read is " + displayStringValue() + "\nd.Hi! " + displayStringValue() + ","
-				+ "The sum of " + displayIntegerValue() + " and " + displayDoubleValue() + " is " + displaySumOfNumbers());
+		constantValues.LOGGER
+				.log(Level.INFO,
+						"\na.The integer read is {0} \nb.The doubling point number read is {1} \nc.the string read is {2} \nd.Hi! {3} The sum of {4}  and {5}  is {6} ",
+						new Object[] { displayIntegerValue(), displayDoubleValue(), displayStringValue(), displayStringValue(),
+								displayIntegerValue(), displayDoubleValue(), displaySumOfNumbers() });
 
 	}
 
