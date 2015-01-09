@@ -2,6 +2,7 @@ package com.lftechnology.java_training.jan5;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -35,8 +36,6 @@ class ArrayStore {
 	private final static Logger LOGGER = Logger.getLogger(ArrayStore.class.getName());
 	private Scanner input = new Scanner(System.in);
 	private int countValuesInArray = 0;
-	private final String Y = "y";
-	private final String YES = "yes";
 
 	/**
 	 * return array
@@ -55,7 +54,7 @@ class ArrayStore {
 	 */
 	public void setValueForArray(String arrayNumber) {
 		LOGGER.info(arrayNumber);
-		String addStatus = "";
+		String addDataStatus = "";
 
 		// loop until user added new values to array
 		do {
@@ -65,13 +64,13 @@ class ArrayStore {
 				this.arrayOfValues[this.countValuesInArray++] = input.next();
 
 			} catch (ArrayIndexOutOfBoundsException | NoSuchElementException e) {
-				LOGGER.info("cant add more data");
+				LOGGER.log(Level.SEVERE, "cant add more data {0}", e);
 				this.countValuesInArray--;
 				break;
 			}
 			LOGGER.info("Do you want to add more[y/n]: ");
-			addStatus = input.next();
-		} while (((addStatus.equals(Y)) || (addStatus.equals(YES))));
+			addDataStatus = input.next();
+		} while (((addDataStatus.equals(ConstantValuesContainer.Y)) || (addDataStatus.equals(ConstantValuesContainer.YES))));
 
 	}
 

@@ -1,6 +1,8 @@
 package com.lftechnology.java_training.jan5;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -35,8 +37,6 @@ class StoreArray {
 	private final static Logger LOGGER = Logger.getLogger(StoreArray.class.getName());
 	private Scanner input = new Scanner(System.in);
 	private int countValuesInArray = 0;
-	private final String Y = "y";
-	private final String YES = "yes";
 
 	public String[] getValue() {
 		return this.arrayOfValues;
@@ -59,15 +59,15 @@ class StoreArray {
 				LOGGER.info("enter Value to to store in array");
 				this.arrayOfValues[this.countValuesInArray++] = this.input.next();
 
-			} catch (Exception e) {
+			} catch (ArrayIndexOutOfBoundsException | NoSuchElementException e) {
 				this.countValuesInArray--;
-				LOGGER.info("cant add more data");
+				LOGGER.log(Level.SEVERE, "cant add more data {0}", e);
 				break;
 			}
 
 			LOGGER.info("Do you want to add more[y/n]: ");
 			exitStatus = this.input.next();
-		} while (((exitStatus.equals(Y)) || (exitStatus.equals(YES))));
+		} while (((exitStatus.equals(ConstantValuesContainer.Y)) || (exitStatus.equals(ConstantValuesContainer.YES))));
 	}
 
 	/**
@@ -77,7 +77,7 @@ class StoreArray {
 	 *            an object of {@link StoreArray} too cpmare between two array values
 	 */
 	public void compareArrayValues(StoreArray arrayOfValues2) {
-		Boolean serialContentStatus = true;
+		boolean serialContentStatus = true;
 		if (this.countValuesInArray == arrayOfValues2.countValuesInArray) {
 			label: for (int i = 0; i < this.countValuesInArray; i++) {
 				for (int j = 0; j < this.countValuesInArray; j++) {
