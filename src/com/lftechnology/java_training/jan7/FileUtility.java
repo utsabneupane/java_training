@@ -2,22 +2,27 @@ package com.lftechnology.java_training.jan7;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * it contains function that creates,delete,rename files and create directory
+ * 
+ * @author UtsabNeupane<utsabneupane@lftechnology.com>
+ * 
+ */
 public class FileUtility {
-
-	private static Scanner input = new Scanner(System.in);
 	private static final Logger LOGGER = Logger.getLogger(FileUtility.class.getName());
 
 	/**
 	 * creates new file and checks if it already exists or not
 	 * 
-	 * @param newFile
-	 *            an object of {@link File}
+	 * @param fileName
+	 *            is a name of file that user wants to create and cannot be null
+	 * @return newFile an object of {@link File}
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
 	 */
-	public File createFile(String fileName) {
+	public static File createFile(String fileName) {
 		File newFile = null;
 		// check if the file already exist or not
 		try {
@@ -36,8 +41,14 @@ public class FileUtility {
 
 	/**
 	 * it creates a directory and checks whether it exists or not
+	 * 
+	 * @param dirName
+	 *            directory name to create a directory on that name and cannot be null
+	 * 
+	 * @return newDirectory an object of {@link File} if new directory created, else it will return null
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
 	 */
-	public File createDir(String dirName) {
+	public static File createDir(String dirName) {
 		File newDir = new File(dirName);
 		// check if the file already exist or not
 		try {
@@ -59,10 +70,14 @@ public class FileUtility {
 	 * ask user to enter new name to rename the old filename
 	 * 
 	 * @param oldFile
-	 *            an object of {@link File}
+	 *            an object of {@link File} that is to be renamed and cannot be null
+	 * @param newName
+	 *            to rename an old file which cannot be null and shouldnot have extension
+	 * 
 	 * @return {@link File} with renamed filename
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
 	 */
-	public File renameFile(File oldFile, String newName) {
+	public static File renameFile(File oldFile, String newName) {
 		String extension = "";
 		// get extension of file
 		int charLocation = oldFile.getPath().lastIndexOf('.');
@@ -85,27 +100,26 @@ public class FileUtility {
 	}
 
 	/**
-	 * ask user if he want to delete file or not and delete file on user confirmation
+	 * Ask user if he want to delete file or not and delete file on user confirmation
 	 * 
 	 * @param newFile
-	 *            an object of {@link File}
+	 *            an object of {@link File} and cannot be null
+	 * @param inputChoice
+	 *            of whether user wants to delete file or not eg: Y or YES to delete
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
 	 */
-	public void deleteFile(File newFile) {
-		boolean deleteStatus = true;
-		// ask user to delete file or not
-		LOGGER.info("do you want to delete file??[y/n]");
-		String inputChoice = input.next();
-		if (inputChoice.equalsIgnoreCase(TrainingConstantsUtility.Y) || inputChoice.equalsIgnoreCase(TrainingConstantsUtility.YES)) {
+	public static void deleteFile(File newFile, String inputChoice) {
+		boolean deleteStatus = false;
+		if (inputChoice.equalsIgnoreCase(TrainingConstants.Y) || inputChoice.equalsIgnoreCase(TrainingConstants.YES)) {
 			deleteStatus = newFile.delete();
-			if (deleteStatus) {
-				LOGGER.info("File deleted");
-			} else {
-				LOGGER.info("File cannot deleted");
-			}
-			// check status of file
-			LOGGER.log(Level.INFO, "Absolute Path: {0}", newFile.getAbsoluteFile());
-			LOGGER.log(Level.INFO, "File exists: {0}", newFile.exists());
 		}
+		if (deleteStatus) {
+			LOGGER.info("File deleted");
+		} else {
+			LOGGER.info("File cannot deleted");
+		}
+		// check status of file
+		LOGGER.log(Level.INFO, "Absolute Path: {0}", newFile.getAbsoluteFile());
+		LOGGER.log(Level.INFO, "File exists: {0}", newFile.exists());
 	}
-
 }

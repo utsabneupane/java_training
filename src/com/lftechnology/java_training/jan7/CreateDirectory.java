@@ -13,24 +13,13 @@ import java.util.logging.Logger;
  */
 public class CreateDirectory {
 	private static final Logger LOGGER = Logger.getLogger(CreateDirectory.class.getName());
-	private static FileUtility fileUtility = new FileUtility();
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		String dirName = getDirName();
-		File newDir = fileUtility.createDir(dirName);
+		System.out.println("Enter name of directory: ");
+		String dirName = TrainingConstants.PATH + input.next();
+		File newDir = FileUtility.createDir(dirName);
 		LOGGER.log(Level.INFO, "{0}", newDir.getAbsolutePath());
-
-	}
-
-	/**
-	 * get name of directory from user
-	 * 
-	 * @return name of directory
-	 */
-	public static String getDirName() {
-		LOGGER.log(Level.INFO, "Enter name of directory: ");
-		return TrainingConstantsUtility.path + input.next();
 	}
 
 }

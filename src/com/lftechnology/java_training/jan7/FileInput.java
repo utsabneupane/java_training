@@ -1,6 +1,7 @@
 package com.lftechnology.java_training.jan7;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -27,57 +28,24 @@ public class FileInput {
 	private static int doubleValueCounter = 0;
 	private static int stringValueCounter = 0;
 	private static final Logger LOGGER = Logger.getLogger(FileInput.class.getName());
-	private static final String fileName = "in.txt";
+	private static final String FILENAME = "in.txt";
 
 	public static void main(String[] args) {
-		// read values from file
-		boolean readStatus = readFromFile();
-		if (readStatus) {
-			// display values written in file to console
-			displayValueFromFile();
-		}
-	}
 
-	/**
-	 * read data from file and store it according to its type
-	 */
-	private static boolean readFromFile() {
 		Scanner inputFile = null;
 		try {
-			inputFile = new Scanner(new BufferedReader(new FileReader(fileName)));
-			// loop until the value finishes
-			while (inputFile.hasNext()) {
-				// check if value is int
-				if (inputFile.hasNextInt()) {
-					intReadValue[intValueCounter++] = Integer.parseInt(inputFile.next());
-					// check if value is double
-				} else if (inputFile.hasNextDouble()) {
-					doubleReadValue[doubleValueCounter++] = Double.parseDouble(inputFile.next());
-				} else {
-					stringReadValue[stringValueCounter++] = inputFile.next();
-
-				}
-			}
-			return true;
-		} catch (Exception e) {
+			inputFile = new Scanner(new BufferedReader(new FileReader(FILENAME)));
+		} catch (FileNotFoundException | NullPointerException e) {
 			LOGGER.log(Level.SEVERE, "file not found {0}", e);
-			return false;
-
 		} finally {
 			inputFile.close();
 		}
-
-	}
-
-	/**
-	 * display value stored in different variable which are according to data types
-	 */
-	private static void displayValueFromFile() {
+		// read and display values from file
+		readFromFile(inputFile);
 		String intValue = displayIntegerValue();
 		String doubleValue = displayDoubleValue();
 		String stringValue = displayStringValue();
 		String displaySum = displaySumOfNumbers();
-
 		LOGGER.log(
 				Level.INFO,
 				"\na.The integer read is {0} \nb.The doubling point number read is {1} \nc.the string read is {2} \nd.Hi! {2} The sum of {0}  and {1}  is {3} ",
@@ -86,9 +54,35 @@ public class FileInput {
 	}
 
 	/**
+	 * read data from file and store it according to its type
+	 * 
+	 * @param inputFile
+	 *            an object of {@link Scanner} which cannot be null
+	 * @return <code>true</code>if reading {@link File} is possible else <code>false</code>
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
+	 * 
+	 */
+	private static void readFromFile(Scanner inputFile) {
+		// loop until the value finishes
+		while (inputFile.hasNext()) {
+			// check if value is int
+			if (inputFile.hasNextInt()) {
+				intReadValue[intValueCounter++] = Integer.parseInt(inputFile.next());
+				// check if value is double
+			} else if (inputFile.hasNextDouble()) {
+				doubleReadValue[doubleValueCounter++] = Double.parseDouble(inputFile.next());
+			} else {
+				stringReadValue[stringValueCounter++] = inputFile.next();
+			}
+		}
+
+	}
+
+	/**
 	 * return stored value from {@link Integer} array taken from file
 	 * 
 	 * @return all values from {@link Integer} concatinated in a {@link String} separated by comma
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
 	 */
 	private static String displayIntegerValue() {
 		int tempCounter = intValueCounter;
@@ -100,13 +94,14 @@ public class FileInput {
 			}
 		} while (tempCounter != 0);
 		// changed from StringBuilder to String
-		return tempIntValues + "";
+		return tempIntValues.toString();
 	}
 
 	/**
 	 * return stored value from {@link Double} array taken from file
 	 * 
 	 * @return all values from {@link Double} concatinated in a {@link String} separated by comma
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
 	 */
 	private static String displayDoubleValue() {
 		int tempCounter = doubleValueCounter;
@@ -118,13 +113,14 @@ public class FileInput {
 			}
 		} while (tempCounter != 0);
 		// changed from StringBuilder to String
-		return tempDoubleValues + "";
+		return tempDoubleValues.toString();
 	}
 
 	/**
 	 * return stored value from {@link String} array taken from file
 	 * 
 	 * @return all values from {@link String} concatinated in a {@link String} separated by comma
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
 	 */
 	private static String displayStringValue() {
 		int tempCounter = stringValueCounter;
@@ -136,11 +132,14 @@ public class FileInput {
 			}
 		} while (tempCounter != 0);
 		// changed from StringBuilder to String
-		return tempStringValues + "";
+		return tempStringValues.toString();
 	}
 
 	/**
 	 * display sum of values of {@link Integer} array and {@link Double} array
+	 * 
+	 * @return {@link String} value as result of sum of two arrays
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
 	 */
 	private static String displaySumOfNumbers() {
 		double sumOfValues = 0;

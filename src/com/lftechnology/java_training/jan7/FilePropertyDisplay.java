@@ -14,88 +14,29 @@ import java.util.logging.Logger;
  */
 public class FilePropertyDisplay {
 	private static final Logger LOGGER = Logger.getLogger(FilePropertyDisplay.class.getName());
-	private static FileUtility fileUtility = new FileUtility();
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		String fileName = getFileNameFromUser();
-		File myFile = fileUtility.createFile(fileName);
-		displayPropertyOfFile(myFile);
-
-	}
-
-	/**
-	 * display the output like following: Following are the property of file:
-	 * <ol>
-	 * <li>file exists</li>
-	 * <li>this file is not a directory</li>
-	 * <li>its absoulte path is: /home/utsabn34/codehome/repo/files/abc.txt</li>
-	 * </ol>
-	 * 
-	 * @param newFile
-	 *            an object of {@link File}
-	 */
-	private static void displayPropertyOfFile(File newFile) {
-		String checkFileExistence = checkFileExistence(newFile);
-		String isFileADirectory = isFileADirectory(newFile);
-		String absolutePath = newFile.getAbsolutePath();
+		System.out.println("Enter a file name with its extension ");
+		String fileName = TrainingConstants.PATH + input.next();
+		File myFile = FileUtility.createFile(fileName);
+		// check whether a file is directory or not
+		String checkFileType = "";
+		if (myFile.isDirectory()) {
+			checkFileType = "this file is a directory";
+		} else {
+			checkFileType = "this file is not a directory";
+		}
+		// check whether a file exists or not
+		String checkFileExistence = "";
+		if (myFile.exists()) {
+			checkFileExistence = "file exists";
+		} else {
+			checkFileExistence = "file doesnt exist";
+		}
+		String absolutePath = myFile.getAbsolutePath();
+		// display file properties
 		LOGGER.log(Level.INFO, "Following are the property of file:\n1.{0} \n2.{1} \n3. its absoulte path is: {2} ", new Object[] {
-				checkFileExistence, isFileADirectory, absolutePath });
-	}
-
-	/**
-	 * check whether file is directory or not
-	 * 
-	 * @param newFile
-	 *            an object of {@link File}
-	 * @return <p>
-	 *         this file is a directory
-	 *         </p>
-	 *         if file is directory elsse
-	 *         <p>
-	 *         this file is a directory
-	 *         </p>
-	 * 
-	 */
-	private static String isFileADirectory(File newFile) {
-		boolean isFileDirectory = newFile.isDirectory();
-		if (isFileDirectory) {
-			return ("this file is a directory");
-		} else {
-			return ("this file is not a directory");
-		}
-	}
-
-	/**
-	 * checks if file exist or not
-	 * 
-	 * @param newFile
-	 *            an object of {@link File}
-	 * @return <p>
-	 *         file exists
-	 *         </p>
-	 *         if file exist else
-	 *         <p>
-	 *         file doesnt exists
-	 *         </p>
-	 */
-	private static String checkFileExistence(File newFile) {
-		boolean fileExist = newFile.exists();
-		if (fileExist) {
-			return ("file exists");
-		} else {
-			return ("file doesnt exist");
-		}
-	}
-
-	/**
-	 * @parameter a string that represent for what purpose the filename is asked to user for eg: for new name or to rename
-	 * @return file Name from user
-	 */
-	private static String getFileNameFromUser() {
-		// ask user to enter new name
-		LOGGER.log(Level.INFO, "Enter a file name ");
-		return TrainingConstantsUtility.path + input.next();
-
+				checkFileExistence, checkFileType, absolutePath });
 	}
 }

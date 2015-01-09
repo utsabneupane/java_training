@@ -13,29 +13,32 @@ import java.util.logging.Logger;
  * 
  */
 public class RenameAndDeleteOrgFile {
-	private static FileUtility fileUtility = new FileUtility();
+
 	private static final Logger LOGGER = Logger.getLogger(RenameAndDeleteOrgFile.class.getName());
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		String fileName = getFileNameFromUser("New fileName");
-		File myFile = fileUtility.createFile(fileName);
+		File myFile = FileUtility.createFile(fileName);
 		if (myFile != null) {
 			String newFileName = getFileNameFromUser("new FileName to rename");
-			myFile = fileUtility.renameFile(myFile, newFileName);
-			fileUtility.deleteFile(myFile);
+			myFile = FileUtility.renameFile(myFile, newFileName);
+			System.out.println("do you want to delete file??[y/n]");
+			String inputChoice = input.next();
+			FileUtility.deleteFile(myFile, inputChoice);
 		}
 	}
 
 	/**
-	 * @parameter a string that represent for what purpose the filename is asked to user for eg: for new name or to rename
-	 * @return file Name from user
+	 * This function ask user to enter name of file
+	 * 
+	 * @param fileNamefor
+	 *            {@link String} that represent for what purpose the filename is asked to user for eg: for new name or to rename
+	 * @return file Name taken from user
+	 * @author UtsabNeupane<utsabneupane@lftechnology.com>
 	 */
 	private static String getFileNameFromUser(String fileNameFor) {
-		// ask user to enter new name
 		LOGGER.log(Level.INFO, "Enter a file name {0}", fileNameFor);
-		return TrainingConstantsUtility.path + input.next();
-
+		return TrainingConstants.PATH + input.next();
 	}
-
 }
