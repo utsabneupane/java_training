@@ -4,11 +4,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Write a program called FileInput to read an int, a double, and a String form a text file called "in.txt", and produce the following
- * output: (Hint use Scanner to read from file) a. The integer read is 12 b. The floating point number read is 33.44 c. The String read is
- * "Peter" d. Hi! Peter, the sum of 12 and 33.44 is 45.44
+ * output: (Hint use Scanner to read from file)
+ * <ol>
+ * <li>The integer read is 12</li>
+ * <li>The floating point number read is 33.44</li>
+ * <li>The String read is"Peter"</li>
+ * <li>Hi! Peter, the sum of 12 and 33.44 is 45.44</li>
+ * </ol>
  * 
  * @author UtsabNeupane<utsabneupane@lftechnology.com>
  * 
@@ -20,23 +26,25 @@ public class FileInput {
 	private static int intValueCounter = 0;
 	private static int doubleValueCounter = 0;
 	private static int stringValueCounter = 0;
-	private static TrainingConstantsUtility constantValues = new TrainingConstantsUtility();
+	private static final Logger LOGGER = Logger.getLogger(FileInput.class.getName());
+	private static final String fileName = "in.txt";
 
 	public static void main(String[] args) {
 		// read values from file
-		readFromFile();
-		// display values written in file to console
-		displayValueFromFile();
+		boolean readStatus = readFromFile();
+		if (readStatus) {
+			// display values written in file to console
+			displayValueFromFile();
+		}
 	}
 
 	/**
 	 * read data from file and store it according to its type
 	 */
-	private static void readFromFile() {
+	private static boolean readFromFile() {
 		Scanner inputFile = null;
-
 		try {
-			inputFile = new Scanner(new BufferedReader(new FileReader("in.txt")));
+			inputFile = new Scanner(new BufferedReader(new FileReader(fileName)));
 			// loop until the value finishes
 			while (inputFile.hasNext()) {
 				// check if value is int
@@ -50,9 +58,10 @@ public class FileInput {
 
 				}
 			}
-
+			return true;
 		} catch (Exception e) {
-			constantValues.LOGGER.info("file not found" + e);
+			LOGGER.log(Level.SEVERE, "file not found {0}", e);
+			return false;
 
 		} finally {
 			inputFile.close();
@@ -64,16 +73,22 @@ public class FileInput {
 	 * display value stored in different variable which are according to data types
 	 */
 	private static void displayValueFromFile() {
-		constantValues.LOGGER
-				.log(Level.INFO,
-						"\na.The integer read is {0} \nb.The doubling point number read is {1} \nc.the string read is {2} \nd.Hi! {3} The sum of {4}  and {5}  is {6} ",
-						new Object[] { displayIntegerValue(), displayDoubleValue(), displayStringValue(), displayStringValue(),
-								displayIntegerValue(), displayDoubleValue(), displaySumOfNumbers() });
+		String intValue = displayIntegerValue();
+		String doubleValue = displayDoubleValue();
+		String stringValue = displayStringValue();
+		String displaySum = displaySumOfNumbers();
+
+		LOGGER.log(
+				Level.INFO,
+				"\na.The integer read is {0} \nb.The doubling point number read is {1} \nc.the string read is {2} \nd.Hi! {2} The sum of {0}  and {1}  is {3} ",
+				new Object[] { intValue, doubleValue, stringValue, displaySum });
 
 	}
 
 	/**
-	 * display stored value in {@link Integer} array taken from file
+	 * return stored value from {@link Integer} array taken from file
+	 * 
+	 * @return all values from {@link Integer} concatinated in a {@link String} separated by comma
 	 */
 	private static String displayIntegerValue() {
 		int tempCounter = intValueCounter;
@@ -89,7 +104,9 @@ public class FileInput {
 	}
 
 	/**
-	 * display stored value in {@link Double} array taken from file
+	 * return stored value from {@link Double} array taken from file
+	 * 
+	 * @return all values from {@link Double} concatinated in a {@link String} separated by comma
 	 */
 	private static String displayDoubleValue() {
 		int tempCounter = doubleValueCounter;
@@ -105,7 +122,9 @@ public class FileInput {
 	}
 
 	/**
-	 * display stored value in {@link String} array taken from file
+	 * return stored value from {@link String} array taken from file
+	 * 
+	 * @return all values from {@link String} concatinated in a {@link String} separated by comma
 	 */
 	private static String displayStringValue() {
 		int tempCounter = stringValueCounter;

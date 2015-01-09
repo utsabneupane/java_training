@@ -1,7 +1,5 @@
 package com.lftechnology.java_training.jan7;
 
-import java.util.logging.Logger;
-
 /**
  * it stores the constants values used for assingment jan7
  * 
@@ -10,8 +8,8 @@ import java.util.logging.Logger;
  */
 public class TrainingConstantsUtility {
 	// constants initialization
-	final Logger LOGGER = Logger.getLogger(RenameAndDeleteOrgFile.class.getName());
-	final String Y = "y";
-	final String YES = "yes";
+	static final String path = "/home/utsabn34/codehome/repo/files/";
+	static final String Y = "y";
+	static final String YES = "yes";
 
 }
