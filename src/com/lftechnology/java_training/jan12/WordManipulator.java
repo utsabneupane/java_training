@@ -22,44 +22,30 @@ public class WordManipulator {
 	public static void main(String[] args) {
 		List<String> listOfWords = new ArrayList<>(Arrays.asList(WORDS_LIST));
 		LOGGER.log(Level.INFO, "list of words: {0}", listOfWords);
-		Set<String> dupEliminatedWords = new HashSet<>();
+		Set<String> dupEliminatedWords = new HashSet<String>(listOfWords);
 		Set<String> dupWords = new HashSet<>();
 		Set<String> distinctWords = new HashSet<>();
-		// get duplicate eliminated words
-		dupEliminatedWords = getDupEliminatedWords();
 		// get duplicate words
-		dupWords = getDupWords();
+		dupWords = getDupWords(listOfWords);
 		// get distinctWords
-		distinctWords = getDistinctWords();
+		distinctWords = getDistinctWords(listOfWords);
 		LOGGER.log(Level.INFO, "duplicate eliminated words: {0}", dupEliminatedWords);
 		LOGGER.log(Level.INFO, "duplicate words:{0}", dupWords);
 		LOGGER.log(Level.INFO, "no of distinct words:{0} \n distinct words:{1}", new Object[] { distinctWords.size(), distinctWords });
 	}
 
 	/**
-	 * This method eliminate duplicate words and return {@link Set} of words without duplicate
-	 * 
-	 * @return {@link Set} that contains duplicate eliminated words
-	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
-	 */
-	private static Set<String> getDupEliminatedWords() {
-		Set<String> dupEliminatedWords = new HashSet<>();
-		for (String words : WORDS_LIST) {
-			dupEliminatedWords.add(words);
-		}
-		return dupEliminatedWords;
-	}
-
-	/**
 	 * This method returns {@link Set} of duplicate words from the list of words
 	 * 
+	 * @param list
+	 *            an object of {@link List} from which duplicate words are extracted
 	 * @return {@link Set} that contains duplicate words
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
-	private static Set<String> getDupWords() {
+	private static Set<String> getDupWords(List<String> list) {
 		Set<String> dupWords = new HashSet<>();
 		Set<String> tempWords = new HashSet<>();
-		for (String words : WORDS_LIST) {
+		for (String words : list) {
 			if (!tempWords.add(words)) {
 				dupWords.add(words);
 			}
@@ -70,16 +56,14 @@ public class WordManipulator {
 	/**
 	 * This method returns the {@link Set} of words that are distinct
 	 * 
+	 * @param list
+	 *            an object of {@link List} from which distinct words are extracted
 	 * @return distinct words
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
-	private static Set<String> getDistinctWords() {
-		Set<String> distinctWords = new HashSet<>();
-		for (String words : getDupEliminatedWords()) {
-			if (!getDupWords().contains(words)) {
-				distinctWords.add(words);
-			}
-		}
-		return distinctWords;
+	private static Set<String> getDistinctWords(List<String> list) {
+		Set<String> dupEliminatedWords = new HashSet<>(Arrays.asList(WORDS_LIST));
+		dupEliminatedWords.removeAll(getDupWords(list));
+		return dupEliminatedWords;
 	}
 }

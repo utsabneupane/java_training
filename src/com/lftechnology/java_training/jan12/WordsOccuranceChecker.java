@@ -24,20 +24,22 @@ public class WordsOccuranceChecker {
 		List<String> listOfWords = new ArrayList<>(Arrays.asList(WORDS_LIST));
 		LOGGER.log(Level.INFO, "list of words: {0}", listOfWords);
 		// list no of occurance of words
-		Map<String, Integer> wordList = countOccurance();
+		Map<String, Integer> wordList = countOccurance(listOfWords);
 		LOGGER.log(Level.INFO, "list of occurance of words: {0}", wordList);
 	}
 
 	/**
 	 * This method count no of occurance of words in a {@link List}
 	 * 
+	 * @param list
+	 *            an object of {@link List}
 	 * @return {@link Map} that contains words with no of occurance
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
-	private static Map<String, Integer> countOccurance() {
+	private static Map<String, Integer> countOccurance(List<String> list) {
 		Map<String, Integer> wordList = new HashMap<String, Integer>();
 		Integer freq = 0;
-		for (String words : WORDS_LIST) {
+		for (String words : list) {
 			freq = wordList.get(words);
 			wordList.put(words, (freq == null) ? 1 : freq + 1);
 		}
