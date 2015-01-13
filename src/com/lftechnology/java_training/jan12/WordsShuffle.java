@@ -1,6 +1,7 @@
 package com.lftechnology.java_training.jan12;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,11 +18,7 @@ public class WordsShuffle {
 	private static final Logger LOGGER = Logger.getLogger(WordsShuffle.class.getName());
 
 	public static void main(String[] args) {
-		List<String> listOfWords = new ArrayList<>();
-		// store all words in a list from array of words
-		for (String words : WORDS_LIST) {
-			listOfWords.add(words);
-		}
+		List<String> listOfWords = new ArrayList<>(Arrays.asList(WORDS_LIST));
 		LOGGER.log(Level.INFO, "list of words: {0}", listOfWords);
 		// shuffle list of words in random order
 		Collections.shuffle(listOfWords);

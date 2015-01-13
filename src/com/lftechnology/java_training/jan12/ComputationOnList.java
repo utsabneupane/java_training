@@ -3,7 +3,6 @@ package com.lftechnology.java_training.jan12;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class ComputationOnList {
 	private static final Logger LOGGER = Logger.getLogger(ComputationOnList.class.getName());
-	private static Scanner input = new Scanner(System.in);
+	private static final int EXTRACT_VALUE = 6;
 
 	public static void main(String[] args) {
 		// add value from 1 to 49 in a list
@@ -27,11 +26,9 @@ public class ComputationOnList {
 		}
 		Collections.shuffle(list);
 		LOGGER.log(Level.INFO, "shuffled value of list: {0}", list);
-		System.out.println("Enter how many value to extract");
-		int extractValue = input.nextInt();
 		// this method takes first user wanted values from list sort them and display those values
 		List<Integer> sortedList = new ArrayList<>();
-		sortedList = list.subList(0, extractValue);
+		sortedList = list.subList(0, EXTRACT_VALUE);
 		Collections.sort(sortedList);
 		LOGGER.log(Level.INFO, "sorted order of extracted value: {0}", sortedList);
 	}

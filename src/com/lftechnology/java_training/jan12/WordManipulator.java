@@ -1,6 +1,7 @@
 package com.lftechnology.java_training.jan12;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,11 +20,7 @@ public class WordManipulator {
 	private static final Logger LOGGER = Logger.getLogger(WordManipulator.class.getName());
 
 	public static void main(String[] args) {
-		List<String> listOfWords = new ArrayList<>();
-		// store all words in a list from array of words
-		for (String words : WORDS_LIST) {
-			listOfWords.add(words);
-		}
+		List<String> listOfWords = new ArrayList<>(Arrays.asList(WORDS_LIST));
 		LOGGER.log(Level.INFO, "list of words: {0}", listOfWords);
 		Set<String> dupEliminatedWords = new HashSet<>();
 		Set<String> dupWords = new HashSet<>();

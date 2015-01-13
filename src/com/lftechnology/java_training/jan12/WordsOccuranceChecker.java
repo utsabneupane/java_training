@@ -1,6 +1,7 @@
 package com.lftechnology.java_training.jan12;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,11 +21,7 @@ public class WordsOccuranceChecker {
 	private static final Logger LOGGER = Logger.getLogger(WordsOccuranceChecker.class.getName());
 
 	public static void main(String[] args) {
-		List<String> listOfWords = new ArrayList<>();
-		// store all words in a list from array of words
-		for (String words : WORDS_LIST) {
-			listOfWords.add(words);
-		}
+		List<String> listOfWords = new ArrayList<>(Arrays.asList(WORDS_LIST));
 		LOGGER.log(Level.INFO, "list of words: {0}", listOfWords);
 		// list no of occurance of words
 		Map<String, Integer> wordList = countOccurance();
@@ -39,8 +36,9 @@ public class WordsOccuranceChecker {
 	 */
 	private static Map<String, Integer> countOccurance() {
 		Map<String, Integer> wordList = new HashMap<String, Integer>();
+		Integer freq = 0;
 		for (String words : WORDS_LIST) {
-			Integer freq = wordList.get(words);
+			freq = wordList.get(words);
 			wordList.put(words, (freq == null) ? 1 : freq + 1);
 		}
 		return wordList;

@@ -1,5 +1,6 @@
 package com.lftechnology.java_training.jan12;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,11 +25,9 @@ public class LinkedListOperation {
 	private static final String[] WORDS_LIST_SECOND = { "six", "seven", "eight", "nine", "ten" };
 
 	public static void main(String[] args) {
-		List<String> one = new LinkedList<String>();
-		List<String> two = new LinkedList<String>();
-		insertValuesToList(one, WORDS_LIST_FIRST);
+		List<String> one = new LinkedList<String>(Arrays.asList(WORDS_LIST_FIRST));
+		List<String> two = new LinkedList<String>(Arrays.asList(WORDS_LIST_SECOND));
 		LOGGER.log(Level.INFO, "list of one:{0}", one);
-		insertValuesToList(two, WORDS_LIST_SECOND);
 		LOGGER.log(Level.INFO, "list of two:{0}", two);
 		one.addAll(two);
 		LOGGER.log(Level.INFO, "After mergin two to one :\n list of one:{0}", one);
@@ -36,21 +35,6 @@ public class LinkedListOperation {
 		LOGGER.log(Level.INFO, "list of two:{0}", two);
 		one.removeAll(two);
 		LOGGER.log(Level.INFO, "list of one:{0}", one);
-	}
-
-	/**
-	 * add list of words in list according to Word list they pass on as a parameter
-	 * 
-	 * @param list
-	 *            an object of {@link List} where list of values to be inserted
-	 * @param wordsList
-	 *            an object of {@link String} that contains list of values to be inserted
-	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
-	 */
-	private static void insertValuesToList(List<String> list, String[] wordsList) {
-		for (String words : wordsList) {
-			list.add(words);
-		}
 	}
 
 	/**
