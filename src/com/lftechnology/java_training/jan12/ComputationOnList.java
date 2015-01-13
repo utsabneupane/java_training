@@ -20,6 +20,7 @@ public class ComputationOnList {
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		// add value from 1 to 49 in a list
 		List<Integer> list = new ArrayList<>();
 		for (int i = 1; i <= 49; i++) {
 			list.add(i);
@@ -28,7 +29,6 @@ public class ComputationOnList {
 		LOGGER.log(Level.INFO, "shuffled value of list: {0}", list);
 		System.out.println("Enter how many value to extract");
 		int extractValue = input.nextInt();
-
 		// this method takes first user wanted values from list sort them and display those values
 		List<Integer> sortedList = new ArrayList<>();
 		sortedList = list.subList(0, extractValue);

@@ -36,7 +36,6 @@ public class LinkedListOperation {
 		LOGGER.log(Level.INFO, "list of two:{0}", two);
 		one.removeAll(two);
 		LOGGER.log(Level.INFO, "list of one:{0}", one);
-
 	}
 
 	/**

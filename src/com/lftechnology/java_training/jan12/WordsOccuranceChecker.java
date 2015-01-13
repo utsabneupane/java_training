@@ -32,7 +32,7 @@ public class WordsOccuranceChecker {
 	}
 
 	/**
-	 * This mehtof count no of occurance of words in a {@link List}
+	 * This method count no of occurance of words in a {@link List}
 	 * 
 	 * @return {@link Map} that contains words with no of occurance
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
