@@ -4,14 +4,18 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This class implements various types of car Like {@link ElectricCar} and {@link PetrolCar} and its functionalities
+ * 
+ * @author Utsab Neupane<utsabneupane@lftechnology.com>
+ * 
+ */
 public class CarImpl {
 	private static Logger LOGGER = Logger.getLogger(ElectricCar.class.getName());
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		int inputChoice = 0;
-
-		// int secondInputChoice = 0;
 		boolean isInt = false;
 		do {
 			LOGGER.log(Level.INFO,
@@ -37,7 +41,11 @@ public class CarImpl {
 	}
 
 	/**
+	 * This function implements various available functions of {@link ElectricCar}
+	 * 
 	 * @param teslaCar
+	 *            an object of {@link ElectricCar}
+	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
 	private static void electricCarFunctionImpl(ElectricCar teslaCar) {
 		int firstInputChoice = 0;
@@ -66,7 +74,11 @@ public class CarImpl {
 	}
 
 	/**
-	 * @param teslaCar
+	 * This function implements various available functions of {@link PetrolCar}
+	 * 
+	 * @param bmwPetrolCar
+	 *            an object of {@link PetrolCar}
+	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
 	private static void petrolCarFunctionImpl(PetrolCar bmwPetrolCar) {
 		int firstInputChoice = 0;
