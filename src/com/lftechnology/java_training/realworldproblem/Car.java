@@ -15,7 +15,7 @@ public abstract class Car {
 	 * @return total {@link Integer} value as <code>NO_OF_WHEELS</code>
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
-	public int noOfWheel() {
+	protected int noOfWheel() {
 		return NO_OF_WHEELS;
 	}
 
@@ -24,12 +24,12 @@ public abstract class Car {
 	 * 
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
-	public abstract void navigate();
+	protected abstract void navigate();
 
 	/**
 	 * This method gives Steering feature for a {@link Car}
 	 * 
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
-	public abstract void steering();
+	protected abstract void steering();
 }
