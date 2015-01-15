@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author Utsab Neupane<utsabneupane@lftechnology.com>
  * 
  */
-public class PetrolCar extends Car {
+public class PetrolCar implements Car {
 	private static Logger LOGGER = Logger.getLogger(PetrolCar.class.getName());
 
 	public PetrolCar() {
@@ -45,6 +45,11 @@ public class PetrolCar extends Car {
 
 	@Override
 	public void steering() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void noOfWheel() {
 		// TODO Auto-generated method stub
 	}
 }

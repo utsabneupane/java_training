@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author Utsab Neupane<utsabneupane@lftechnology.com>
  * 
  */
-public class ElectricCar extends Car {
+public class ElectricCar implements Car {
 	private static Logger LOGGER = Logger.getLogger(ElectricCar.class.getName());
 
 	public ElectricCar() {
@@ -55,6 +55,11 @@ public class ElectricCar extends Car {
 
 	@Override
 	public void steering() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void noOfWheel() {
 		// TODO Auto-generated method stub
 	}
 
