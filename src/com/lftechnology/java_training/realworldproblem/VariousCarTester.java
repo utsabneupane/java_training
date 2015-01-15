@@ -2,7 +2,6 @@ package com.lftechnology.java_training.realworldproblem;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -18,9 +17,10 @@ public class VariousCarTester {
 
 	public static void main(String[] args) {
 		String inputChoice = "";
+		ElectricCar teslaCar = new ElectricCar();
+		PetrolCar bmwPetrolCar = new PetrolCar();
 		do {
-			LOGGER.log(Level.INFO,
-					"\n****Simulation of Cars: ****** \n1.Simulation of Electric Car \n2. Simulation of Petrol Car \n3.to exit");
+			LOGGER.info("\n****Simulation of Cars: ****** \n1.Simulation of Electric Car \n2. Simulation of Petrol Car \n3.to exit");
 			do {
 				inputChoice = input.next();
 
@@ -28,20 +28,21 @@ public class VariousCarTester {
 			choiceInput = Integer.parseInt(inputChoice);
 			switch (choiceInput) {
 			case 1:
-				ElectricCar teslaCar = new ElectricCar();
+				LOGGER.info("\n*******Simulation of Petrol Car begins:*******\n");
 				electricCarFunctionImpl(teslaCar);
 				break;
 			case 2:
-				PetrolCar bmwPetrolCar = new PetrolCar();
+				LOGGER.info("\n****Simulation of Electric Car begins:******\n");
 				petrolCarFunctionImpl(bmwPetrolCar);
 				break;
 			case 3:
 				break;
 			default:
-				LOGGER.log(Level.WARNING, "wrong choice");
+				LOGGER.warning("wrong choice");
 				break;
 			}
 		} while (choiceInput != 3);
+		choiceInput = 0;
 	}
 
 	/**
@@ -52,14 +53,14 @@ public class VariousCarTester {
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
 	private static void electricCarFunctionImpl(ElectricCar teslaCar) {
-		String firstInputChoice = "";
+		String inputChoice = "";
 		do {
-			LOGGER.log(Level.INFO, "\n1. Moving car to Charging adapter \n2.Charge Car \n3.Run test Electric Car\n4.Back to Main Menu");
+			LOGGER.info("\n1. Moving car to Charging adapter \n2.Charge Car \n3.Run test Electric Car\n4.Back to Main Menu");
 			do {
-				firstInputChoice = input.next();
+				inputChoice = input.next();
 
-			} while (!isInt(firstInputChoice));
-			choiceInput = Integer.parseInt(firstInputChoice);
+			} while (!isInt(inputChoice));
+			choiceInput = Integer.parseInt(inputChoice);
 			switch (choiceInput) {
 			case 1:
 				teslaCar.moveCarToChargingAdapter();
@@ -73,10 +74,11 @@ public class VariousCarTester {
 			case 4:
 				break;
 			default:
-				LOGGER.log(Level.WARNING, "wrong choice");
+				LOGGER.warning("wrong choice");
 				break;
 			}
 		} while (choiceInput != 4);
+		choiceInput = 0;
 	}
 
 	/**
@@ -89,7 +91,7 @@ public class VariousCarTester {
 	private static void petrolCarFunctionImpl(PetrolCar bmwPetrolCar) {
 		String inputChoice = "";
 		do {
-			LOGGER.log(Level.INFO, "\n1. Fill Fuel \n2.Run test Electric Car \n3. Back to Main Menu");
+			LOGGER.warning("\n1. Fill Fuel \n2.Run test Electric Car \n3. Back to Main Menu");
 			do {
 				inputChoice = input.next();
 
@@ -105,10 +107,11 @@ public class VariousCarTester {
 			case 3:
 				break;
 			default:
-				LOGGER.log(Level.WARNING, "wrong choice");
+				LOGGER.warning("wrong choice");
 				break;
 			}
 		} while (choiceInput != 3);
+		choiceInput = 0;
 	}
 
 	/**
@@ -125,7 +128,7 @@ public class VariousCarTester {
 			Integer.parseInt(inputValue);
 			inputIntStatus = true;
 		} catch (InputMismatchException | NumberFormatException e) {
-			LOGGER.log(Level.SEVERE, " input should be integer value:");
+			LOGGER.severe(" input should be integer value:");
 			inputIntStatus = false;
 		}
 		return inputIntStatus;

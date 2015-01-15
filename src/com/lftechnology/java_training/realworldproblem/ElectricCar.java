@@ -1,6 +1,5 @@
 package com.lftechnology.java_training.realworldproblem;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -14,12 +13,8 @@ import java.util.logging.Logger;
  * @author Utsab Neupane<utsabneupane@lftechnology.com>
  * 
  */
-public class ElectricCar implements Car {
+public class ElectricCar extends Car {
 	private static Logger LOGGER = Logger.getLogger(ElectricCar.class.getName());
-
-	public ElectricCar() {
-		LOGGER.log(Level.INFO, "\n****Simulation of Electric Car begins:******\n");
-	}
 
 	/**
 	 * This method will simulate {@link ElectricCar} moving to Charging Adapter process
@@ -27,7 +22,7 @@ public class ElectricCar implements Car {
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
 	public void moveCarToChargingAdapter() {
-		LOGGER.log(Level.INFO, "\n*****Moving car to charging adapter*******\n");
+		LOGGER.info("\n*****Moving car to charging adapter*******\n");
 	}
 
 	/**
@@ -36,7 +31,7 @@ public class ElectricCar implements Car {
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
 	public void chargeCar() {
-		LOGGER.log(Level.INFO, "\n*******Charging car*******\n");
+		LOGGER.info("\n*******Charging car*******\n");
 	}
 
 	/**
@@ -45,22 +40,19 @@ public class ElectricCar implements Car {
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
 	public void runTestElectricCar() {
-		LOGGER.log(Level.INFO, "\n*******running Test of Electric car*******\n");
+		LOGGER.info("\n*******running Test of Electric car*******\n");
 	}
 
 	@Override
-	public void navigate() {
+	protected void navigate() {
 		// TODO Auto-generated method stub
+
 	}
 
 	@Override
-	public void steering() {
+	protected void steering() {
 		// TODO Auto-generated method stub
-	}
 
-	@Override
-	public void noOfWheel() {
-		// TODO Auto-generated method stub
 	}
 
 }

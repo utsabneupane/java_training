@@ -1,6 +1,5 @@
 package com.lftechnology.java_training.realworldproblem;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -13,12 +12,8 @@ import java.util.logging.Logger;
  * @author Utsab Neupane<utsabneupane@lftechnology.com>
  * 
  */
-public class PetrolCar implements Car {
+public class PetrolCar extends Car {
 	private static Logger LOGGER = Logger.getLogger(PetrolCar.class.getName());
-
-	public PetrolCar() {
-		LOGGER.log(Level.INFO, "\n*******Simulation of Petrol Car begins:*******\n");
-	}
 
 	/**
 	 * This method will simulate fuel filling process of {@link PetrolCar}
@@ -26,7 +21,7 @@ public class PetrolCar implements Car {
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
 	public void fillFuel() {
-		LOGGER.log(Level.INFO, "\n*******Filling petrol in  Petrol car*******\n");
+		LOGGER.info("\n*******Filling petrol in  Petrol car*******\n");
 	}
 
 	/**
@@ -35,7 +30,7 @@ public class PetrolCar implements Car {
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
 	public void runTestPetrolCar() {
-		LOGGER.log(Level.INFO, "\n*******Running test of Petrol car *******\n");
+		LOGGER.info("\n*******Running test of Petrol car *******\n");
 	}
 
 	@Override
@@ -48,8 +43,4 @@ public class PetrolCar implements Car {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public void noOfWheel() {
-		// TODO Auto-generated method stub
-	}
 }
