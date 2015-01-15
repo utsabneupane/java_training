@@ -6,12 +6,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This class implements various types of car Like {@link ElectricCar} and {@link PetrolCar} and its functionalities
+ * This class performs various feature and functionalities of {@link ElectricCar} and {@link PetrolCar}
  * 
  * @author Utsab Neupane<utsabneupane@lftechnology.com>
  * 
  */
-public class CarImpl {
+public class VariousCarTester {
 	private static Logger LOGGER = Logger.getLogger(ElectricCar.class.getName());
 	private static Scanner input = new Scanner(System.in);
 	private static int choiceInput = 0;
@@ -45,7 +45,7 @@ public class CarImpl {
 	}
 
 	/**
-	 * This function implements various available functions of {@link ElectricCar}
+	 * This function performs various available functions of {@link ElectricCar}
 	 * 
 	 * @param teslaCar
 	 *            an object of {@link ElectricCar}
@@ -80,7 +80,7 @@ public class CarImpl {
 	}
 
 	/**
-	 * This function implements various available functions of {@link PetrolCar}
+	 * This function performs various available functions of {@link PetrolCar}
 	 * 
 	 * @param bmwPetrolCar
 	 *            an object of {@link PetrolCar}
