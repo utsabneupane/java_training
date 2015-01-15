@@ -2,6 +2,7 @@ package com.lftechnology.java_training.jan12;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,10 +39,8 @@ public class WordsOccuranceChecker {
 	 */
 	private static Map<String, Integer> countOccurance(List<String> list) {
 		Map<String, Integer> wordList = new HashMap<String, Integer>();
-		Integer freq = 0;
 		for (String words : list) {
-			freq = wordList.get(words);
-			wordList.put(words, (freq == null) ? 1 : freq + 1);
+			wordList.put(words, Collections.frequency(list, words));
 		}
 		return wordList;
 	}

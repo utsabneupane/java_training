@@ -27,8 +27,7 @@ public class ComputationOnList {
 		Collections.shuffle(list);
 		LOGGER.log(Level.INFO, "shuffled value of list: {0}", list);
 		// this method takes first user wanted values from list sort them and display those values
-		List<Integer> sortedList = new ArrayList<>();
-		sortedList = list.subList(0, EXTRACT_VALUE);
+		List<Integer> sortedList = list.subList(0, EXTRACT_VALUE);
 		Collections.sort(sortedList);
 		LOGGER.log(Level.INFO, "sorted order of extracted value: {0}", sortedList);
 	}

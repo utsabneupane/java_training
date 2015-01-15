@@ -22,15 +22,13 @@ public class WordManipulator {
 	public static void main(String[] args) {
 		List<String> listOfWords = new ArrayList<>(Arrays.asList(WORDS_LIST));
 		LOGGER.log(Level.INFO, "list of words: {0}", listOfWords);
-		Set<String> dupEliminatedWords = new HashSet<String>(listOfWords);
-		Set<String> dupWords = new HashSet<>();
-		Set<String> distinctWords = new HashSet<>();
+		Set<String> duplicateEliminatedWords = new HashSet<String>(listOfWords);
 		// get duplicate words
-		dupWords = getDupWords(listOfWords);
+		Set<String> duplicateWords = getDuplicateWords(listOfWords);
 		// get distinctWords
-		distinctWords = getDistinctWords(listOfWords);
-		LOGGER.log(Level.INFO, "duplicate eliminated words: {0}", dupEliminatedWords);
-		LOGGER.log(Level.INFO, "duplicate words:{0}", dupWords);
+		Set<String> distinctWords = getDistinctWords(listOfWords);
+		LOGGER.log(Level.INFO, "duplicate eliminated words: {0}", duplicateEliminatedWords);
+		LOGGER.log(Level.INFO, "duplicate words:{0}", duplicateWords);
 		LOGGER.log(Level.INFO, "no of distinct words:{0} \n distinct words:{1}", new Object[] { distinctWords.size(), distinctWords });
 	}
 
@@ -42,15 +40,15 @@ public class WordManipulator {
 	 * @return {@link Set} that contains duplicate words
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
-	private static Set<String> getDupWords(List<String> list) {
-		Set<String> dupWords = new HashSet<>();
+	private static Set<String> getDuplicateWords(List<String> list) {
+		Set<String> duplicateWords = new HashSet<>();
 		Set<String> tempWords = new HashSet<>();
 		for (String words : list) {
 			if (!tempWords.add(words)) {
-				dupWords.add(words);
+				duplicateWords.add(words);
 			}
 		}
-		return dupWords;
+		return duplicateWords;
 	}
 
 	/**
@@ -62,8 +60,8 @@ public class WordManipulator {
 	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
 	 */
 	private static Set<String> getDistinctWords(List<String> list) {
-		Set<String> dupEliminatedWords = new HashSet<>(Arrays.asList(WORDS_LIST));
-		dupEliminatedWords.removeAll(getDupWords(list));
-		return dupEliminatedWords;
+		Set<String> duplicateEliminatedWords = new HashSet<>(Arrays.asList(WORDS_LIST));
+		duplicateEliminatedWords.removeAll(getDuplicateWords(list));
+		return duplicateEliminatedWords;
 	}
 }
