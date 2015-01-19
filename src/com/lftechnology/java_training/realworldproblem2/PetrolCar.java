@@ -28,10 +28,20 @@ public class PetrolCar extends Car {
 		LOGGER.info("\n#######Filling petrol in  Petrol car#######\n");
 	}
 
+	/**
+	 * This function will simulate the run test of {@link PetrolCar}
+	 * 
+	 * @author Utsab Neupane<utsabneupane@lftechnology.com>
+	 */
 	private void runTest() {
 		super.runTest("Petrol Car");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.lftechnology.java_training.realworldproblem2.Car#functionSimulaton()
+	 */
 	@Override
 	protected void functionSimulaton() {
 		fillFuel();

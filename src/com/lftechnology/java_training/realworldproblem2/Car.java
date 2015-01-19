@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This interface contains the basic feature of Car and is an abstract class
+ * This class contains the basic feature and functions of {@link Car} and is an abstract class
  * 
  * @author Utsab Neupane<utsabneupane@lftechnology.com>
  * 

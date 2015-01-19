@@ -47,6 +47,11 @@ public class ElectricCar extends Car {
 		super.runTest("Electric Car");
 	}
 
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see com.lftechnology.java_training.realworldproblem2.Car#functionSimulaton()
+	 */
 	@Override
 	protected void functionSimulaton() {
 		moveCarToChargingAdapter();
