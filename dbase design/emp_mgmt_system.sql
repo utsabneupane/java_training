@@ -8,9 +8,11 @@ USE `Emp_Mgmt_System` ;
 -- -----------------------------------------------------
 -- Table `Emp_Mgmt_System`.`department`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Emp_Mgmt_System`.`department` ;
+
 CREATE TABLE IF NOT EXISTS `Emp_Mgmt_System`.`department` (
   `department_id` BIGINT NOT NULL,
-  `department_name` ENUM('JAVA','PHP','ROR','DEVOPS','UI/UX') NULL,
+  `department_name` VARCHAR(45) NULL,
   `department_description` VARCHAR(45) NULL,
   PRIMARY KEY (`department_id`))
 ENGINE = InnoDB;
@@ -19,6 +21,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Emp_Mgmt_System`.`salary`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Emp_Mgmt_System`.`salary` ;
+
 CREATE TABLE IF NOT EXISTS `Emp_Mgmt_System`.`salary` (
   `salary_id` BIGINT NOT NULL,
   `basic_salary` DOUBLE NULL,
@@ -32,6 +36,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Emp_Mgmt_System`.`designation`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Emp_Mgmt_System`.`designation` ;
+
 CREATE TABLE IF NOT EXISTS `Emp_Mgmt_System`.`designation` (
   `designation_id` BIGINT NOT NULL,
   `title` VARCHAR(45) NOT NULL,
@@ -43,8 +49,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Emp_Mgmt_System`.`employee`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Emp_Mgmt_System`.`employee` ;
+
 CREATE TABLE IF NOT EXISTS `Emp_Mgmt_System`.`employee` (
-  `employee_id` INT NOT NULL,
+  `employee_id` BIGINT NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `middle_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NOT NULL,
@@ -52,12 +60,12 @@ CREATE TABLE IF NOT EXISTS `Emp_Mgmt_System`.`employee` (
   `designation` BIGINT NULL,
   `salary` BIGINT NULL,
   PRIMARY KEY (`employee_id`),
-  INDEX `fk_Department_idx` (`department` ASC, `salary` ASC),
+  INDEX `fk_Department_idx` (`department` ASC),
   INDEX `fk_Salary_idx` (`salary` ASC),
   INDEX `fk_designation_idx` (`designation` ASC),
   CONSTRAINT `fk_department_id`
-    FOREIGN KEY (`department` , `salary`)
-    REFERENCES `Emp_Mgmt_System`.`department` (`department_id` , `department_id`)
+    FOREIGN KEY (`department`)
+    REFERENCES `Emp_Mgmt_System`.`department` (`department_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_salary_id`
