@@ -1,0 +1,22 @@
+Q. Use Sakila database for all the queries. (Use Subqueries for questions 4, 5 & 6)
+
+1. Select the title and language of all the films with film title starting with ‘A’.(Tables: film, language)
+ -->  SELECT f.title,l.name FROM film AS f JOIN language AS l ON f.language_id=l.language_id WHERE f.title LIKE "A%";
+
+2. Return the first name, last name and city of all customers who live in Canada. Order the results first by the last name and then by the first name.(Tables: customer, address, city, country)
+-->  SELECT cust.first_name,cust.last_name,cit.city FROM customer AS cust JOIN address AS ad ON cust.address_id=ad.address_id JOIN city AS cit 		ON ad.city_id=cit.city_id JOIN country AS co ON cit.country_id=co.country_id WHERE co.country="canada" ORDER BY cust.last_name, 		cust.first_name;
+
+3. Select name of all of the customers who have rented horror movies.(Tables: customer, rental, inventory, film_category, category)
+-->  SELECT CONCAT_WS(" ",cu.first_name,cu.last_name) FROM customer AS cu JOIN rental AS rt ON cu.customer_id=rt.customer_id JOIN inventory AS 		iv ON rt.inventory_id=iv.inventory_id JOIN film_category AS fc ON iv.film_id=fc.film_id JOIN category AS ca ON 				fc.category_id=ca.category_id WHERE ca.name="horror";
+
+4. Select full name of all the actors of films along with the film name, which contain actor with first name ‘JENNIFER’.
+-->  SELECT f.title,CONCAT_WS(" ",a.first_name,a.last_name) FROM film AS f JOIN film_actor AS fa ON fa.film_id=f.film_id JOIN actor AS a ON 		fa.actor_id=a.actor_id  WHERE fa.actor_id IN(SELECT actor_id FROM actor WHERE first_name="jennifer"); 
+
+5. Select full name of all of the customers who have rented movies in the category ‘Music’.
+--> SELECT CONCAT_WS(" ",first_name,last_name) FROM customer WHERE customer_id IN(SELECT customer_id FROM rental WHERE inventory_id IN( SELECT 		inventory_id FROM inventory WHERE film_id IN ( SELECT film_id FROM film_category WHERE category_id IN(SELECT category_id FROM 		category WHERE name="music"))));
+
+
+6. Show all customer ids and full names who have rented a film in every category with category_id >15.
+-->   SELECT CONCAT_WS(" ",first_name,last_name) FROM customer WHERE customer_id IN(SELECT customer_id FROM rental WHERE inventory_id IN   		( SELECT inventory_id FROM inventory WHERE film_id IN ( SELECT film_id FROM film_category WHERE category_id =ALL(SELECT category_id 		FROM category WHERE category_id>15))));
+
+
