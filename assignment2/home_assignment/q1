@@ -1,0 +1,16 @@
+
+Q.1. Display First name and Job of all employees who do not earn a commission.
+--> SELECT first_name,job_id FROM employee WHERE commission_percent IS NULL;
+
+Q.2. Display name, job id and data of hiring of all employees who work in IT department with the most recent dates appearing first.
+-->  SELECT CONCAT_WS(" ",first_name,last_name) AS "full name" ,job_id,hire_date FROM employee WHERE department_id="IT" ORDER BY hire_date 	DESC;
+
+Q.3. Display no. of employees in each department, alongside department code, only those employees with salary greater than 3000.
+--> SELECT department_id,COUNT(*) "total employee" FROM employee WHERE salary>3000 GROUP BY department_id;
+
+Q.4. Modify Query 3 such that only departments with more than 1 employees are displayed.
+--> SELECT department_id,COUNT(*) AS "total employee" FROM employee WHERE salary>3000  GROUP BY department_id HAVING COUNT(*)>1;
+
+Q.5 Display total salary of each department, alongside department code, with onlydepartments with total salary > 10000. If any employee has no 			departments display“EXECUTIVE”.
+-->   SELECT COALESCE(department_id,"EXECUTIVE"),SUM(salary) AS "total salary of department" FROM employee GROUP BY department_id HAVING 	SUM(salary)>9000;
+
